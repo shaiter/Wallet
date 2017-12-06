@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import os.log
 
-class Transaction {
+class Transaction: NSObject, NSCoding {
+    
+    //MARK: Properties
     enum transactionTypes: Int {
         case income = 0, spending
     }
-    var byn: Float
+    var byn: Float!
     var usd: Float {
         get {
             return (byn * 0.5)
@@ -28,17 +31,44 @@ class Transaction {
             return(byn * 29.15)
         }
     }
-    var transactionType: transactionTypes
-    var transactionCategory: String
-    let date: String
+    var date: String!
+    var transactionType: Int!
+    var transactionCategory: String!
     
+    //MARK: Archiving Paths
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("transactions")
     
-    init(byn: Float, transactionCategory: String, transactionType: Int) {
+    //MARK: Types
+    struct PropertyKey {
+        static let transactionType = "transactionType"
+        static let byn = "byn"
+        static let transactionCategory = "transactionCategory"
+        static let date = "date"
+    }
+    
+    //MARK: Initialization
+    init(byn: Float, date: String, transactionCategory: String, transactionType: Int) {
         self.byn = byn
         self.transactionCategory = transactionCategory
-        self.transactionType = transactionTypes(rawValue: transactionType)!
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        self.date = formatter.string(from: Date())
+        self.transactionType = transactionType
+        self.date = date
     }
+    
+    //MARK: NSCoding
+    func  encode(with aCoder: NSCoder) {
+        aCoder.encode(date, forKey: PropertyKey.date)
+        aCoder.encode(byn, forKey: PropertyKey.byn)
+        aCoder.encode(transactionCategory, forKey: PropertyKey.transactionCategory)
+        aCoder.encode(transactionType, forKey: PropertyKey.transactionType)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let date = aDecoder.decodeObject(forKey: PropertyKey.date) as! String
+        let byn = aDecoder.decodeObject(forKey: PropertyKey.byn) as! Float
+        let transactionCategory = aDecoder.decodeObject(forKey: PropertyKey.transactionCategory) as! String
+        let transactionType = aDecoder.decodeObject(forKey: PropertyKey.transactionType) as! Int
+        self.init(byn: byn, date: date, transactionCategory: transactionCategory, transactionType: transactionType)
+    }
+    
 }

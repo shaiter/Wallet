@@ -10,6 +10,8 @@ import UIKit
 import os.log
 
 class TransactionViewController: UIViewController, UITextFieldDelegate {
+    
+    //MARK: Properties
     @IBOutlet weak var byn: UITextField!
     @IBOutlet weak var transactionCategory: UITextField!
     @IBOutlet weak var transactionType: UISegmentedControl!
@@ -29,6 +31,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: UITextFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         saveButton.isEnabled = false
     }
@@ -38,6 +41,18 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        //navigationItem.title = textField.text
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        transactionCategory.endEditing(true)
+        byn.endEditing(true)
+    }
+    
+    //MARK: Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -54,20 +69,13 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         if transactionType == 1 {
             byn = -byn
         }
-        transaction = Transaction(byn: byn, transactionCategory: transactionCategory, transactionType: transactionType)
-        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = formatter.string(from: Date())
+        transaction = Transaction(byn: byn, date: date, transactionCategory: transactionCategory, transactionType: transactionType)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        transactionCategory.endEditing(true)
-        byn.endEditing(true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateSaveButtonState()
-        navigationItem.title = textField.text
-    }
-    
+    //MARK: Private Methods
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let byn = self.byn.text ?? ""

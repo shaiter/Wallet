@@ -7,23 +7,21 @@
 //
 
 import UIKit
+import os.log
 
 class TransactionTableViewController: UITableViewController {
     
+    //MARK: Properties
+    
     var transactions = [Transaction]()
-    
-    private func loadSampleTransactions() {
-        let transaction1 = Transaction(byn: 1.33, transactionCategory: "На молочко", transactionType: 0)
-        let transaction2 = Transaction(byn: 0.99, transactionCategory: "На хлебушек", transactionType: 0)
-        let transaction3 = Transaction(byn: 3.54, transactionCategory: "На курочку", transactionType: 0)
-        transactions += [transaction1, transaction2, transaction3]
-    }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadSampleTransactions()
+        
+        if let savedTransactions = loadTransactions() {
+            transactions += savedTransactions
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +57,12 @@ class TransactionTableViewController: UITableViewController {
     
     @IBAction func unwindToTransactionsList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? TransactionViewController, let transaction = sourceViewController.transaction {
-            let newIndexPath = IndexPath(row: transactions.count, section: 0)
-            transactions.append(transaction)
+            //let newIndexPath = IndexPath(row: transactions.count, section: 0)
+            //transactions.append(transaction)
+            let newIndexPath = IndexPath(row: 0, section: 0)
+            transactions.insert(transaction, at: 0)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
+            saveTransactions()
         }
     }
 
@@ -109,5 +110,18 @@ class TransactionTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    //MARK: Private Methods
+    
+    private func saveTransactions() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(transactions, toFile: Transaction.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Transactions successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save transactions...", log: OSLog.default, type: .error)
+        }
+    }
+    private func loadTransactions() -> [Transaction]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Transaction.ArchiveURL.path) as? [Transaction]
+    }
 }

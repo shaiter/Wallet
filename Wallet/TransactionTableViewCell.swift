@@ -9,6 +9,8 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
+    
+    //MARK: Properties
     @IBOutlet weak var transactionCategory: UILabel!
     @IBOutlet weak var byn: UILabel!
     @IBOutlet weak var usd: UILabel!
