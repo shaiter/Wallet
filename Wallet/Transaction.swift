@@ -36,8 +36,9 @@ class Transaction: NSObject, NSCoding {
     var transactionCategory: String!
     
     //MARK: Archiving Paths
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("transactions")
+    static let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static var userName = "userName"
+    static var lastUser = "lastUser"
     
     //MARK: Types
     struct PropertyKey {

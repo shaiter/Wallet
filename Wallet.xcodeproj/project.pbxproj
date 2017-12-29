@@ -16,7 +16,9 @@
 		172838431FD05E060069D06D /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172838421FD05E060069D06D /* WalletUITests.swift */; };
 		172838511FD078B00069D06D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172838501FD078B00069D06D /* Transaction.swift */; };
 		172838531FD07EE00069D06D /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172838521FD07EE00069D06D /* TransactionTableViewCell.swift */; };
-		172838551FD083700069D06D /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172838541FD083700069D06D /* TransactionTableViewController.swift */; };
+		173256B31FD9503B001AB77F /* AllTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173256B21FD9503B001AB77F /* AllTransactionsViewController.swift */; };
+		1768BDD21FE278ED00C49BA1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1768BDD11FE278ED00C49BA1 /* LoginViewController.swift */; };
+		1768BDD61FE27EC200C49BA1 /* mainScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1768BDD51FE27EC200C49BA1 /* mainScreen.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +54,9 @@
 		172838441FD05E070069D06D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		172838501FD078B00069D06D /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		172838521FD07EE00069D06D /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
-		172838541FD083700069D06D /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
+		173256B21FD9503B001AB77F /* AllTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsViewController.swift; sourceTree = "<group>"; };
+		1768BDD11FE278ED00C49BA1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1768BDD51FE27EC200C49BA1 /* mainScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mainScreen.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +110,14 @@
 				172838221FD05E060069D06D /* AppDelegate.swift */,
 				172838241FD05E060069D06D /* TransactionViewController.swift */,
 				172838261FD05E060069D06D /* Main.storyboard */,
-				172838541FD083700069D06D /* TransactionTableViewController.swift */,
+				1768BDD11FE278ED00C49BA1 /* LoginViewController.swift */,
+				173256B21FD9503B001AB77F /* AllTransactionsViewController.swift */,
 				172838521FD07EE00069D06D /* TransactionTableViewCell.swift */,
 				172838501FD078B00069D06D /* Transaction.swift */,
 				172838291FD05E060069D06D /* Assets.xcassets */,
 				1728382B1FD05E060069D06D /* LaunchScreen.storyboard */,
 				1728382E1FD05E060069D06D /* Info.plist */,
+				1768BDD51FE27EC200C49BA1 /* mainScreen.jpg */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 			files = (
 				1728382D1FD05E060069D06D /* LaunchScreen.storyboard in Resources */,
 				1728382A1FD05E060069D06D /* Assets.xcassets in Resources */,
+				1768BDD61FE27EC200C49BA1 /* mainScreen.jpg in Resources */,
 				172838281FD05E060069D06D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,11 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1768BDD21FE278ED00C49BA1 /* LoginViewController.swift in Sources */,
 				172838251FD05E060069D06D /* TransactionViewController.swift in Sources */,
+				173256B31FD9503B001AB77F /* AllTransactionsViewController.swift in Sources */,
 				172838231FD05E060069D06D /* AppDelegate.swift in Sources */,
 				172838531FD07EE00069D06D /* TransactionTableViewCell.swift in Sources */,
 				172838511FD078B00069D06D /* Transaction.swift in Sources */,
-				172838551FD083700069D06D /* TransactionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

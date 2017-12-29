@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AllTransactionsViewController.loadTransactions():AllTransactionsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Transaction.documentsDirectory">
+            </PersistentString>
+            <PersistentString
+               value = "Transaction.ArchiveURL">
+            </PersistentString>
+            <PersistentString
+               value = "Transaction.userName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
